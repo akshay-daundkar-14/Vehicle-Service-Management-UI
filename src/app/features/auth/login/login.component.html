@@ -1,0 +1,29 @@
+
+  <div class="container-fluid">
+    <form [formGroup]="loginForm" class="mx-auto">
+
+      <h4 class="text-center">Login</h4>
+      <div class="mb-3 mt-5">
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          formControlName="email"
+        />
+      </div>
+      <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="text-danger">*Email is required</small>
+      <small *ngIf="loginForm.hasError('email','email')" class="text-danger">Invalid Email</small>
+     
+      <div class="mb-2 mt-4">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"/>
+      </div>
+      <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*Password is required</small>
+      <small *ngIf="loginForm.hasError('pattern','password')" class="text-danger">Weak Password</small>
+      
+      <button type="submit" (click)="onSubmit()"  class="btn btn-secondary mt-5 btn-lg">Login</button>
+
+    </form>
+  </div>
