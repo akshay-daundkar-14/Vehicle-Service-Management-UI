@@ -1,0 +1,48 @@
+.
+<div class="container">
+  <h1 class="mt-3 text-center">Material List</h1>
+  <div class="d-flex justify-content-end mt-3">
+    <a [routerLink]="['/admin/materials/add']" class="btn btn-secondary"
+      >Add Vehicle</a
+    >
+  </div>
+
+  <div class="mt-5">
+    <ng-container *ngIf="materials">
+      <table
+        class="table table-bordered table-striped mt-3"
+        datatable
+        [dtOptions]="dtoptions"
+      >
+        <thead>
+          <tr>
+            <th>Material Id</th>
+            <th>Material Name</th>
+            <th>Cost</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let material of materials">
+            <td>{{ material.itemID }}</td>
+            <td>{{ material.itemName }}</td>
+            <td>{{ material.cost }}</td>
+            <td>
+              <a
+                class="btn btn-warning"
+                [routerLink]="['/admin/materials/edit/', material.itemID]"
+                >Edit</a
+              >
+              |
+              <a
+                class="btn btn-danger"
+                [routerLink]="['/admin/materials/delete/', material.itemID]"
+                >Remove</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>

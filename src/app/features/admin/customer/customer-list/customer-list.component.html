@@ -1,0 +1,54 @@
+.
+<div class="container">
+  <h1 class="mt-3 text-center">Customer List</h1>
+  <div class="d-flex justify-content-end mt-2">
+    <a [routerLink]="['/admin/customers/add']" class="btn btn-secondary"
+      >Add Customer</a
+    >
+  </div>
+
+  <div class="mt-5">
+    <ng-container *ngIf="customers">
+      <table
+        class="table table-bordered table-striped mt-6"
+        datatable
+        [dtOptions]="dtoptions"
+      >
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.customerId }}</td>
+            <td>{{ customer.firstName }}</td>
+            <td>{{ customer.lastName }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.mobile }}</td>
+            <td>{{ customer.address }}</td>
+            <td>
+              <a
+                class="btn btn-warning"
+                style="margin-right: 5px"
+                [routerLink]="['/admin/customers/edit/', customer.customerId]"
+                >Edit</a
+              >
+              <a
+                class="btn btn-danger"
+                [routerLink]="['/admin/customers/delete/', customer.customerId]"
+                >Remove</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>

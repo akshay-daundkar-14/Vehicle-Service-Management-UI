@@ -1,0 +1,49 @@
+
+
+
+
+<ng-container *ngIf="model" ;else notFound>
+    <div class="container">
+      <h1 class="mt-3 text-center">Delete Customer</h1>
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+        <div class="mt-4">
+
+            <div class="mt-3">
+                <label class="form-label">Customer First Name</label>
+                <input type="text" disabled readonly id="customerFirstName"class="form-control" name="customerFirstName" [(ngModel)]="model.firstName"/>
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Customer Last Name</label>
+                <input type="text" disabled readonly id="customerLastName"class="form-control" name="customerLastName" [(ngModel)]="model.lastName"/>
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Customer Email</label>
+                <input type="text" disabled readonly id="customerEmail"class="form-control" name="customerEmail" [(ngModel)]="model.email"/>
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Customer Mobile</label>
+                <input type="text" disabled readonly id="customerMobile"class="form-control" name="customerMobile" [(ngModel)]="model.mobile"/>
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Customer Address</label>
+                <input type="text" disabled readonly id="customerAddress"class="form-control" name="customerAddress" [(ngModel)]="model.address"/>
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-secondary" type="submit">Delete Customer</button>
+            </div>
+        </div>
+    </form>
+    </div>
+  </ng-container>
+  
+  <ng-template #notFound>
+    <div class="alert alert-dark" role="alert">
+      customer Not Found!
+    </div>
+  </ng-template>
+  

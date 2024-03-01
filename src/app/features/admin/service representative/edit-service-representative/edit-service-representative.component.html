@@ -1,0 +1,43 @@
+
+<ng-container *ngIf="model" ;else notFound>
+
+
+
+<div class="container">
+    <h1 class="mt-3 text-center">Edit Representative</h1>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+        <div class="mt-4">
+
+            <div class="mt-3">
+                <label class="form-label">Representative First Name</label>
+                <input type="text" id="serviceRepresentativeFirstName"class="form-control" name="serviceRepresentativeFirstName" [(ngModel)]="model.firstName"/>
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Representative Last Name</label>
+                <input type="text" id="serviceRepresentativeLastName"class="form-control" name="serviceRepresentativeLastName" [(ngModel)]="model.lastName"/>
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Representative Email</label>
+                <input type="text" id="serviceRepresentativeEmail"class="form-control" name="serviceRepresentativeEmail" [(ngModel)]="model.email"/>
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Representative Mobile</label>
+                <input type="text" id="serviceRepresentativeMobile"class="form-control" name="serviceRepresentativeMobile" [(ngModel)]="model.contactNumber"/>
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-secondary" type="submit">Edit Representative</button>
+            </div>
+        </div>
+    </form>
+</div>
+</ng-container>
+
+<ng-template #notFound>
+    <div class="alert alert-dark" role="alert">
+      customer Not Found!
+    </div>
+  </ng-template>

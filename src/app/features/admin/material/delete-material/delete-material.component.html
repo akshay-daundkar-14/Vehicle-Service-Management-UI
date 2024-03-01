@@ -1,0 +1,32 @@
+
+
+
+<ng-container *ngIf="model;else notFound">
+    <div class="container">
+        <h1 class="mt-3 text-center">Delete Material</h1>
+        <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+            <div class="mt-4">
+    
+                <div class="mt-3">
+                    <label class="form-label">Item Name</label>
+                    <input type="text" disabled readonly id="itemName"class="form-control" name="itemName" [(ngModel)]="model.itemName"/>
+                </div>
+    
+                <div class="mt-3">
+                    <label class="form-label">Material Cost</label>
+                    <input type="text" disabled readonly id="materialCost"class="form-control" name="materialCost" [(ngModel)]="model.cost"/>
+                </div>
+    
+                <div class="mt-3">
+                    <button class="btn btn-secondary" type="submit">Delete material</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-container>
+
+<ng-template #notFound>
+    <div class="alert alert-dark" role="alert">
+      Material Not Found!
+    </div>
+  </ng-template>
