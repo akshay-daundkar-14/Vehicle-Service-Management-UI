@@ -1,0 +1,46 @@
+
+
+.
+<div class="container">
+    <h1 class="mt-3 text-center">
+        Vehicle List
+    </h1>
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/admin/vehicles/add']" class="btn btn-secondary">Add Vehicle</a>
+    </div>
+
+    <ng-container *ngIf="vehicles">
+
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Vehicle Id</th>
+                    <th>Vehicle Category</th>
+                    <th>Vehicle Reg No.</th>
+                    <th>Vehicle Number</th>
+                    <th>Vehicle Model</th>
+                    <th>Vehicle Brand</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vehicle of vehicles">
+                    <td>{{vehicle.vehicleId}}</td>
+                    <td>{{vehicle.vehicleCategory}}</td>
+                    <td>{{vehicle.vehicleRegNo}}</td>
+                    <td>{{vehicle.vehicleNumber}}</td>
+                    <td>{{vehicle.vehicleModel}}</td>
+                    <td>{{vehicle.vehicleBrand}}</td>
+                    <td>
+                        <a class="btn btn-warning" [routerLink]="['/admin/vehicles/edit/',vehicle.vehicleId]">Edit</a> |
+                        <a class="btn btn-danger" [routerLink]="['/admin/vehicles/delete/',vehicle.vehicleId]">Remove</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </ng-container>
+
+
+</div>

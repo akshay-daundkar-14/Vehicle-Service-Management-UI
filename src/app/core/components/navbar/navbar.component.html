@@ -15,18 +15,19 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
         </li> -->
-        <ng-container *ngIf="user !== undefined && user?.role?.includes('Admin')">
+        <!-- <ng-container *ngIf="user !== undefined && user?.role?.includes('Admin')"> -->
+          <ng-container>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Customer Management</a></li>
-            <li><a class="dropdown-item" href="#">Vehicle Management</a></li>
-            <li><a class="dropdown-item" href="#">Material Management</a></li>
-            <li><a class="dropdown-item" href="#">Service Representative Management</a></li>
+            <li><a class="dropdown-item" [routerLink] = "['/']">Customer Management</a></li>
+            <li><a class="dropdown-item" [routerLink] = "['/admin/vehicles']">Vehicle Management</a></li>
+            <li><a class="dropdown-item" [routerLink] = "['/']">Material Management</a></li>
+            <li><a class="dropdown-item" [routerLink] = "['/']">Service Representative Management</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Service Management</a></li>
+            <li><a class="dropdown-item" [routerLink] = "['/']">Service Management</a></li>
           </ul>
         </li>
       </ng-container>
