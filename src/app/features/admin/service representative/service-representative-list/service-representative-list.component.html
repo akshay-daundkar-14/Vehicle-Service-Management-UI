@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let sa of models">
+          <tr *ngFor="let sa of models;let i = index">
             <td>{{ sa.representativeID }}</td>
             <td>{{ sa.firstName }}</td>
             <td>{{ sa.lastName }}</td>

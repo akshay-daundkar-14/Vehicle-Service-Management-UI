@@ -1,0 +1,170 @@
+
+<form  [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
+
+
+<ng-container *ngIf="model" ;else notFound>
+    <div class="container mt-3">
+        <div class="card" style="width: 1200px;">
+            <h3 class="text-center mt-2">Add Items</h3>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mt-3">
+                            <label class="form-label">Vehicle Category</label>
+                            <input
+                              type="text"
+                              id="vehicleCategory"
+                              class="form-control"
+                              name="vehicleCategory"                              
+                              formControlName="vehicleCategory"
+                             
+                              readonly
+                            />
+                          </div>
+                  
+                          <div class="mt-3">
+                            <label class="form-label">Vehicle Registration Number</label>
+                            <input
+                              type="text"
+                              id="vehicleRegNo"
+                              class="form-control"
+                              name="categoryRegNo"
+                              formControlName="vehicleRegNo"
+                              
+                              readonly
+                            />
+                          </div>
+                  
+                          <div class="mt-3">
+                            <label class="form-label">Vehicle Number</label>
+                            <input
+                              type="text"
+                              id="vehicleNumber"
+                              class="form-control"
+                              name="categoryNumber"
+                              formControlName="vehicleNumber"
+                              
+                              readonly
+                            />
+                          </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mt-3">
+                            <label class="form-label">Vehicle Model</label>
+                            <input
+                              type="text"
+                              id="vehicleModel"
+                              class="form-control"
+                              name="categoryModel"
+                              formControlName="vehicleModel"
+                              
+                              readonly
+                            />
+                          </div>
+                  
+                          <div class="mt-3">
+                            <label class="form-label">Vehicle Brand</label>
+                            <input
+                              type="text"
+                              id="vehicleBrand"
+                              class="form-control"
+                              name="categoryBrand"
+                              formControlName="vehicleBrand"
+                              
+                              readonly
+                            />
+                          </div>
+                          <div class="mt-3">                            
+                                <label  class="form-label">Summary Total</label>
+                                <input formControlName="nettotal" id="nettotal" name="nettotal" class="form-control"/>                            
+                          </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-12">
+                        <table class="table table-bordered" formArrayName="details">
+                            <thead class="table-primary text-white">
+                                <tr>
+                                    <th>Sr.No</th>
+                                    <th>Item Name</th>     
+                                    <th>Quantity</th>                                                                  
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of invoiceProducts.controls;let i = index" [formGroupName]="i">
+                                    <td>{{i+1}}</td>
+                                    
+                                    <td>
+                                        <select class="form-select" formControlName="itemName" (change)="onItemChange(i)">
+                                            <option value="" disabled hidden>
+                                                ---- Select Item ----
+                                              </option>
+                                              <option *ngFor="let option of items" [value]="option.itemID">
+                                                {{ option.itemName }}
+                                              </option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <input class="form-control" formControlName="quantity" (change)="updateRow(i)"/>
+                                    </td>
+                                    
+                                    <td>
+                                        <input class="form-control bg-light" [readonly]="true"  formControlName="price"/>
+                                    </td>
+                                    <td>
+                                        <input class="form-control bg-light"  [readonly]="true"  formControlName="total"/>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" type="button" (click)="removeProductRow(i)">Remove</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <a (click)="addNewProduct()" class="btn btn-success">[+]</a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <!-- <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Summary Total</label>
+                            <input formControlName="nettotal" class="form-control"/>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Summary Net Total</label>
+                            <input class="form-control"/>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        
+</ng-container>
+
+</form>
+
+
+<ng-template #notFound>
+    <div class="alert alert-dark" role="alert">
+      Vehicle Not Found!
+    </div>
+  </ng-template>

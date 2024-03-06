@@ -18,6 +18,11 @@ import { ServiceRepresentativeListComponent } from './features/admin/service rep
 import { AddServiceRepresentativeComponent } from './features/admin/service representative/add-service-representative/add-service-representative.component';
 import { EditServiceRepresentativeComponent } from './features/admin/service representative/edit-service-representative/edit-service-representative.component';
 import { DeleteServiceRepresentativeComponent } from './features/admin/service representative/delete-service-representative/delete-service-representative.component';
+import { ListVehicleComponent } from './features/admin/admin functionality/list-vehicle/list-vehicle/list-vehicle.component';
+import { AssignAdvisorComponent } from './features/admin/admin functionality/assign-advisor/assign-advisor.component';
+import { SaVehicleListComponent } from './features/service advisor/sa-vehicle-list/sa-vehicle-list/sa-vehicle-list.component';
+import { SaInvoiceComponent } from './features/service advisor/sa-invoice/sa-invoice/sa-invoice.component';
+import { authGuard } from './features/auth/guard/auth.guard';
 
 export const routes: Routes = [
   {
@@ -26,7 +31,8 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: CarouselComponent,
+     component: CarouselComponent,
+    //component: ListVehicleComponent,
     pathMatch: 'full',
   },
 
@@ -37,21 +43,25 @@ export const routes: Routes = [
   {
     path: 'admin/vehicles',
     component: VehicleListComponent,
+    canActivate:[authGuard]
   },
 
   {
     path: 'admin/vehicles/add',
     component: AddVehicleComponent,
+    canActivate:[authGuard]
   },
 
   {
     path: 'admin/vehicles/edit/:id',
     component: EditVehicleComponent,
+    canActivate:[authGuard]
   },
 
   {
     path: 'admin/vehicles/delete/:id',
     component: DeleteVehicleComponent,
+    canActivate:[authGuard]
   },
 
   // -------- Customer -----------
@@ -59,21 +69,25 @@ export const routes: Routes = [
   {
     path: 'admin/customers',
     component: CustomerListComponent,
+    canActivate:[authGuard]
   },
 
   {
     path: 'admin/customers/add',
     component: AddCustomerComponent,
+    canActivate:[authGuard]
   },
 
   {
     path: 'admin/customers/edit/:id',
     component: EditCustomerComponent,
+    canActivate:[authGuard]
   },
 
   {
     path: 'admin/customers/delete/:id',
     component: DeleteCustomerComponent,
+    canActivate:[authGuard]
   },
 
     // -------- Material -----------
@@ -81,21 +95,25 @@ export const routes: Routes = [
     {
       path: 'admin/materials',
       component: MaterialListComponent,
+      canActivate:[authGuard]
     },
 
     {
       path: 'admin/materials/add',
       component: AddMaterialComponent,
+      canActivate:[authGuard]
     },
   
     {
       path: 'admin/materials/edit/:id',
       component: EditMaterialComponent,
+      canActivate:[authGuard]
     },
   
     {
       path: 'admin/materials/delete/:id',
       component: DeleteMaterialComponent,
+      canActivate:[authGuard]
     },
 
         // -------- Service Representative -----------
@@ -103,21 +121,54 @@ export const routes: Routes = [
         {
           path: 'admin/servicerepresentatives',
           component: ServiceRepresentativeListComponent,
+          canActivate:[authGuard]
         },
     
         {
           path: 'admin/servicerepresentatives/add',
           component: AddServiceRepresentativeComponent,
+          canActivate:[authGuard]
         },
       
         {
           path: 'admin/servicerepresentatives/edit/:id',
           component: EditServiceRepresentativeComponent,
+          canActivate:[authGuard]
         },
       
         {
           path: 'admin/servicerepresentatives/delete/:id',
           component: DeleteServiceRepresentativeComponent,
+          canActivate:[authGuard]
+        },
+
+        //-----------  Admin Functionality -------------------
+
+
+        {
+          path:'admin',
+          component:ListVehicleComponent,
+          canActivate:[authGuard]
+        },
+
+        {
+          path:'admin/assignsa/:id',
+          component:AssignAdvisorComponent,
+          canActivate:[authGuard]
+        },
+
+
+//********************  Service Advisor Functionality ********************
+       
+
+        {
+          path:'sa/vehicles',
+          component:SaVehicleListComponent
+        },
+
+        {
+          path:'sa/invoice/:id',
+          component:SaInvoiceComponent
         },
 
 

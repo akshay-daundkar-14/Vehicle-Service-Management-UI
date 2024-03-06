@@ -5,4 +5,5 @@ export interface EditVehicleRequest{
     vehicleNumber?:string;
     vehicleModel?:string;
     vehicleBrand?:string;
+    vehicleStatus?:string;
 }

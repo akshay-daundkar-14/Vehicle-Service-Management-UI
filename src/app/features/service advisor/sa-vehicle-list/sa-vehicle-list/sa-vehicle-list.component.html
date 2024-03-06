@@ -1,0 +1,67 @@
+.
+<div class="container">
+  <h1 class="mt-3 text-center">Scheduled Vehicle List</h1>
+  
+
+  <div class="mt-5">
+    <ng-container *ngIf="vehicles">
+      <table class="table table-bordered table-striped mt-3" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th>Vehicle Id</th>
+            <th>Vehicle Category</th>
+            <th>Vehicle Reg No.</th>
+            <th>Vehicle Number</th>
+            <th>Vehicle Model</th>
+            <th>Vehicle Brand</th>
+            <th>Vehicle Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vehicle of vehicles">
+            <td>{{ vehicle.vehicleId }}</td>
+            <td>{{ vehicle.vehicleCategory }}</td>
+            <td>{{ vehicle.vehicleRegNo }}</td>
+            <td>{{ vehicle.vehicleNumber }}</td>
+            <td>{{ vehicle.vehicleModel }}</td>
+            <td>{{ vehicle.vehicleBrand }}</td>
+            <td>
+
+              <!-- <ng-container *ngIf="vehicle.vehicleStatus === 'Pending'; else ifStatus">
+                <span class="badge text-bg-danger">{{ vehicle.vehicleStatus }}</span>
+              </ng-container>
+              
+              <ng-template #ifStatus>
+                <div *ngIf="vehicle.vehicleStatus === 'In Progress'; else elseStatus">
+                  <span class="badge text-bg-warning">{{ vehicle.vehicleStatus }}</span>
+                </div>
+              </ng-template>
+              
+              <ng-template #elseStatus>
+                <div>
+                  <span class="badge text-bg-success">{{ vehicle.vehicleStatus }}</span>
+                </div>
+              </ng-template> -->
+
+              <span class="badge" [ngClass]="getStatusBadge(vehicle.vehicleStatus)">
+                {{ vehicle.vehicleStatus }}
+              </span>
+
+            </td>
+            <td>
+              
+                <a
+                class="btn btn-secondary"
+                [routerLink]="['/sa/invoice/', vehicle.vehicleId]">
+                Action
+              </a>
+              
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>

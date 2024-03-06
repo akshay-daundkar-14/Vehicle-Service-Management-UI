@@ -1,0 +1,63 @@
+.
+<div class="container">
+  <h1 class="mt-3 text-center">Vehicle List</h1>
+  
+
+  <div class="mt-5">
+    <ng-container *ngIf="vehicles">
+      <table class="table table-bordered table-striped mt-3" datatable [dtOptions]="dtoptions">
+        <thead>
+          <tr>
+            <th>Vehicle Id</th>
+            <th>Vehicle Category</th>
+            <th>Vehicle Reg No.</th>
+            <th>Vehicle Number</th>
+            <th>Vehicle Model</th>
+            <th>Vehicle Brand</th>
+            <th>Vehicle Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vehicle of vehicles">
+            <td>{{ vehicle.vehicleId }}</td>
+            <td>{{ vehicle.vehicleCategory }}</td>
+            <td>{{ vehicle.vehicleRegNo }}</td>
+            <td>{{ vehicle.vehicleNumber }}</td>
+            <td>{{ vehicle.vehicleModel }}</td>
+            <td>{{ vehicle.vehicleBrand }}</td>
+            <td>
+
+              <span class="badge" [ngClass]="getStatusBadge(vehicle.vehicleStatus)">
+                {{ vehicle.vehicleStatus }}
+              </span>
+
+            </td>
+            <td>
+
+              <ng-container [ngSwitch]="vehicle.vehicleStatus">
+                <ng-container *ngSwitchCase="'Pending'">
+                  <a class="btn btn-secondary" [routerLink]="['/admin/assignsa/', vehicle.vehicleId]">
+                    Schedule
+                  </a>
+                </ng-container>
+                <ng-container *ngSwitchCase="'Completed'">
+                 
+                  <button type="button" class="btn btn-primary" (click)="downloadInvoice(vehicle.vehicleId)">
+                    Download
+                  </button>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <a class="btn btn-light">
+                    Schedule
+                  </a>
+                </ng-container>
+              </ng-container>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>

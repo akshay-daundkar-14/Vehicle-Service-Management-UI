@@ -8,7 +8,7 @@ import { DataTablesModule } from 'angular-datatables';
 @Component({
   selector: 'app-service-representative-list',
   standalone: true,
-  imports: [CommonModule,RouterLink,DataTablesModule],
+  imports: [DataTablesModule,CommonModule,RouterLink],
   templateUrl: './service-representative-list.component.html',
   styleUrl: './service-representative-list.component.css'
 })
@@ -29,7 +29,6 @@ export class ServiceRepresentativeListComponent implements OnInit {
 
      this.serviceRepresentative.getAllServiceRepresentatives().subscribe({
       next:(res)=>{
-        console.log(res);
         this.models = res;
       },
       error : (err)=>{

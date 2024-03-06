@@ -52,7 +52,8 @@ export class EditVehicleComponent implements OnInit {
       vehicleId : Number(this.id),
       vehicleModel : this.model?.vehicleModel,
       vehicleNumber : this.model?.vehicleNumber,
-      vehicleRegNo : this.model?.vehicleRegNo
+      vehicleRegNo : this.model?.vehicleRegNo,
+      vehicleStatus : "Pending"
      }
 
     this.vehicleService.editVehicle(Number(this.id),vehicle).subscribe({

@@ -7,4 +7,5 @@ export interface GetVehicleResponse{
     vehicleBrand:string;
     vehicleCreatedDate:Date;
     vehicleUpdatedDate:Date;
+    vehicleStatus:string;
 }

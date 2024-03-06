@@ -84,7 +84,18 @@ export class LoginComponent implements OnInit {
           });
           //--------- Routing --------
 
-          this.router.navigateByUrl('/');
+         
+
+          if(response.role === "Admin") {
+            this.router.navigateByUrl('/admin');
+          }else if(response.role === "Service Advisor"){
+            this.router.navigateByUrl('/sa/vehicles');            
+          }
+          else{
+            this.router.navigateByUrl('/'); 
+          }
+
+          
         },
         error: (err) => {
           this.toastr.error('', err.error.errors[''][0], {
