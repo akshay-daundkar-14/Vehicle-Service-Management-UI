@@ -4,11 +4,12 @@ import { MaterialService } from '../services/material.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-material',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './add-material.component.html',
   styleUrl: './add-material.component.css'
 })
@@ -18,7 +19,7 @@ export class AddMaterialComponent {
   constructor(private materialService : MaterialService,private router:Router,private toastr: ToastrService){
     
     this.model = {
-      itemName : "",
+      itemName : '',
       cost : 0
     }
   }

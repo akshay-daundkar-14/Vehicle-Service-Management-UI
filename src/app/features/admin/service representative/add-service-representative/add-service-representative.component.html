@@ -7,26 +7,30 @@
 
             <div class="mt-3">
                 <label class="form-label">Representative First Name</label>
-                <input type="text" id="serviceRepresentativeFirstName"class="form-control" name="serviceRepresentativeFirstName" [(ngModel)]="model.firstName"/>
+                <input type="text" required #firstName="ngModel" id="serviceRepresentativeFirstName"class="form-control" name="serviceRepresentativeFirstName" [(ngModel)]="model.firstName"/>
+                <small class="text-danger" *ngIf="firstName.invalid && firstName.touched">*First Name is required</small>
             </div>
 
             <div class="mt-3">
                 <label class="form-label">Representative Last Name</label>
-                <input type="text" id="serviceRepresentativeLastName"class="form-control" name="serviceRepresentativeLastName" [(ngModel)]="model.lastName"/>
+                <input type="text" required #lastName="ngModel"  id="serviceRepresentativeLastName"class="form-control" name="serviceRepresentativeLastName" [(ngModel)]="model.lastName"/>
+                <small class="text-danger" *ngIf="lastName.invalid && lastName.touched">*Last Name is required</small>
             </div>
 
             <div class="mt-3">
                 <label class="form-label">Representative Email</label>
-                <input type="text" id="serviceRepresentativeEmail"class="form-control" name="serviceRepresentativeEmail" [(ngModel)]="model.email"/>
+                <input type="text" required #email="ngModel"  id="serviceRepresentativeEmail"class="form-control" name="serviceRepresentativeEmail" [(ngModel)]="model.email"/>
+                <small class="text-danger" *ngIf="email.invalid && email.touched">*Email is required</small>
             </div>
 
             <div class="mt-3">
                 <label class="form-label">Representative Mobile</label>
-                <input type="text" id="serviceRepresentativeMobile"class="form-control" name="serviceRepresentativeMobile" [(ngModel)]="model.contactNumber"/>
+                <input type="text" required #mobile="ngModel"  id="serviceRepresentativeMobile"class="form-control" name="serviceRepresentativeMobile" [(ngModel)]="model.contactNumber"/>
+                <small class="text-danger" *ngIf="mobile.invalid && mobile.touched">*Mobile is required</small>
             </div>
 
             <div class="mt-3">
-                <button class="btn btn-secondary" type="submit">Save Representative</button>
+                <button class="btn btn-secondary" [disabled]="form.invalid" type="submit">Save Representative</button>
             </div>
         </div>
     </form>

@@ -35,4 +35,8 @@ export class ServiceRepresentativeService {
     return this.http.delete<void>(`${environment.apiBaseUrl}/api/ServiceRepresentatives/${id}`);
   }
 
+  getServiceRepresentativeByEmail(email?:string):Observable<GetServiceRepresentativeResponse>{
+    return this.http.get<GetServiceRepresentativeResponse>(`${environment.apiBaseUrl}/api/ServiceRepresentatives/byEmail/${email}`);
+  }
+
 }

@@ -18,6 +18,8 @@ export class ListVehicleComponent {
   vehicles?: GetVehicleResponse[];
   dtoptions:DataTables.Settings = {};
 
+  loader:boolean = true;
+
   constructor(
     private vehicleService: VehicleService,
     private toastr: ToastrService,
@@ -33,7 +35,7 @@ export class ListVehicleComponent {
 
     this.vehicleService.getVehicles().subscribe({
       next: (res) => {
-       
+        this.loader = false;
         this.vehicles = res;
       },
       error: (err) => {

@@ -1,4 +1,15 @@
 
+.login-container {
+    background-image: url('../../../../assets/images/tyrechange.jpg'); /* Replace '/assets/images/tyrechange.jpg' with the actual path to your image file */
+    background-size: cover; /* Adjust the background size as needed */
+    background-position: center; /* Adjust the background position as needed */
+    min-height: 100vh; /* Set a minimum height to cover the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 *{
     padding: 0;
     margin: 0;

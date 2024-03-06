@@ -64,7 +64,7 @@ export class EditCustomerComponent {
         this.router.navigateByUrl('/admin/customers');
       },
       error: (err) => {
-        
+        console.log(err);
         this.toastr.error('', 'Oops something went wrong', {
           timeOut: 3000,
         });

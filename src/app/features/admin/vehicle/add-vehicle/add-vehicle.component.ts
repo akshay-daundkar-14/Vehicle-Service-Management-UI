@@ -4,11 +4,12 @@ import { AddVehicleRequest } from '../models/add-vehicle-request.model';
 import { VehicleService } from '../services/vehicle.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-vehicle',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './add-vehicle.component.html',
   styleUrl: './add-vehicle.component.css'
 })

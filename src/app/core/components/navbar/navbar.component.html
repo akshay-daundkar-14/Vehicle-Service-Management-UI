@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink] = "['/']">Vehicle Service Management</a>
+    <a class="navbar-brand fw-bolder" [routerLink] = "['/']">Prime Automobiles</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,14 +9,8 @@
         <li class="nav-item">
           <a class="nav-link active" [routerLink] = "['/']" aria-current="page" href="#">Home</a>
         </li>
-         <!--<li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li> -->
         <ng-container *ngIf="user !== undefined && user?.role?.includes('Admin')">
-          <!-- <ng-container> -->
+         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin

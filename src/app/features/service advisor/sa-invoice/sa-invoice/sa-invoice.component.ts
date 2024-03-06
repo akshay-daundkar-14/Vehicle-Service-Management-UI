@@ -15,6 +15,9 @@ import { MaterialService } from '../../../admin/material/services/material.servi
 import { GetMaterialResponse } from '../../../admin/material/models/get-material-response.model';
 import { ServiceAdvisorService } from '../../services/service-advisor.service';
 import { EditVehicleRequest } from '../../../admin/vehicle/models/edit-vehicle-request.model';
+import { ServiceRepresentativeService } from '../../../admin/service representative/services/service-representative.service';
+import { AuthService } from '../../../auth/services/auth.service';
+import { User } from '../../../auth/models/user.model';
 
 @Component({
   selector: 'app-sa-invoice',
@@ -49,7 +52,9 @@ export class SaInvoiceComponent {
     private router: Router,
     private builder: FormBuilder,
     private materialService: MaterialService,
-    private serviceAdvisorService : ServiceAdvisorService
+    private serviceAdvisorService : ServiceAdvisorService,
+    private authService : AuthService,
+    private serviceRepresentativeService : ServiceRepresentativeService
   ) {}
 
   ngOnInit(): void {
@@ -161,65 +166,78 @@ export class SaInvoiceComponent {
   //------ Save Details ----
 
   saveInvoice() {
-    console.log(this.invoiceForm.value);
-    console.log(this.model);
-    console.log('Get service advisor from localstorage ',6);
+    // console.log(this.invoiceForm.value);
+    // console.log(this.model);
+    // console.log('Get service advisor from localstorage ',6);
 
-    this.serviceAdvisorService.addServiceRecord({
-      vehicleID:this.model?.vehicleId,
-      representativeID : 6, // Need to fetch it when login,
-      customerId : 1 // Static value as of now
-    }).subscribe({
-      next :(res)=>{
-        console.log("add service record ",res);
+    // Get user details like email
 
-        this.invoiceForm.value.details.forEach((element:any) => {
-          this.serviceAdvisorService.addServiceRecordItem({
-            serviceRecordID : res.serviceRecordID,
-            itemID : element.itemName,
-            quantity : element.quantity,
-            price : element.price,
-            total : element.total,
-          }).subscribe({
-            next : (res)=>{
-              console.log("addServiceRecordItem",res);
-            },
-            error:(err)=>{
-              console.log("addServiceRecordItem",err);
-            }
-          });
-        });
+    const user : User | undefined= this.authService.getUser();
 
-       
+    // get service representative_id by email
 
-        const vehicle:EditVehicleRequest = {
-          vehicleBrand : this.model?.vehicleBrand,
-          vehicleCategory : this.model?.vehicleCategory,
-          vehicleId : Number(this.id),
-          vehicleModel : this.model?.vehicleModel,
-          vehicleNumber : this.model?.vehicleNumber,
-          vehicleRegNo : this.model?.vehicleRegNo,
-          vehicleStatus : 'Completed'      
-         }
-
-         this.vehicleService.editVehicle(Number(this.id),vehicle).subscribe({
-          next:(res)=>{
-            console.log("update vehicle status",res);
-            this.router.navigateByUrl('/sa/vehicles');
-            this.toastr.success('','Vehicle Service Done!');
+    this.serviceRepresentativeService.getServiceRepresentativeByEmail(user?.email).subscribe({
+      next:(res)=>{
+        this.serviceAdvisorService.addServiceRecord({
+          vehicleID:this.model?.vehicleId,
+          representativeID : res.representativeID, // Need to fetch it when login,
+          customerId : 1 // Static value as of now
+        }).subscribe({
+          next :(res)=>{
+            console.log("add service record ",res);
+    
+            this.invoiceForm.value.details.forEach((element:any) => {
+              this.serviceAdvisorService.addServiceRecordItem({
+                serviceRecordID : res.serviceRecordID,
+                itemID : element.itemName,
+                quantity : element.quantity,
+                price : element.price,
+                total : element.total,
+              }).subscribe({
+                next : (res)=>{
+                  console.log("addServiceRecordItem",res);
+                },
+                error:(err)=>{
+                  console.log("addServiceRecordItem",err);
+                }
+              });
+            });
+    
+           
+    
+            const vehicle:EditVehicleRequest = {
+              vehicleBrand : this.model?.vehicleBrand,
+              vehicleCategory : this.model?.vehicleCategory,
+              vehicleId : Number(this.id),
+              vehicleModel : this.model?.vehicleModel,
+              vehicleNumber : this.model?.vehicleNumber,
+              vehicleRegNo : this.model?.vehicleRegNo,
+              vehicleStatus : 'Completed'      
+             }
+    
+             this.vehicleService.editVehicle(Number(this.id),vehicle).subscribe({
+              next:(res)=>{
+                console.log("update vehicle status",res);
+                this.router.navigateByUrl('/sa/vehicles');
+                this.toastr.success('','Vehicle Service Done!');
+              },
+              error:(err)=>{
+                console.log("update vehicle status",err);
+                this.toastr.error('','Oops something went wrong!');
+              }
+             });
+    
           },
           error:(err)=>{
-            console.log("update vehicle status",err);
+            console.log(err);
             this.toastr.error('','Oops something went wrong!');
           }
-         });
-
+        });
       },
       error:(err)=>{
-        console.log(err);
+        this.toastr.error('error fetching advisor id',"Oops..");
       }
-    });
-    
+    }); 
 
   }
 

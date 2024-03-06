@@ -10,8 +10,8 @@
 
   <div class="mt-5">
     <ng-container *ngIf="models">
-      <table class="table table-bordered table-striped mt-3" datatable [dtOptions]="dtoptions">
-        <thead>
+      <table class="table table-bordered table-light table-striped mt-3" datatable [dtOptions]="dtoptions">
+        <thead class="table-dark">
           <tr>
             <th>Id</th>
             <th>First Name</th>
@@ -29,7 +29,7 @@
             <td>{{ sa.email }}</td>
             <td>{{ sa.contactNumber }}</td>
             <td>
-              <a class="btn btn-warning" [routerLink]="['/admin/servicerepresentatives/edit',sa.representativeID]">Edit</a>|
+              <a class="btn btn-warning" [routerLink]="['/admin/servicerepresentatives/edit',sa.representativeID]">Edit</a> |
               <a class="btn btn-danger" [routerLink]="['/admin/servicerepresentatives/delete',sa.representativeID]">Remove</a>
             </td>
           </tr>

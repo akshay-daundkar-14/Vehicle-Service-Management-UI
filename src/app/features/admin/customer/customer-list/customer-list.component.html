@@ -10,11 +10,11 @@
   <div class="mt-5">
     <ng-container *ngIf="customers">
       <table
-        class="table table-bordered table-striped mt-6"
+        class="table table-bordered table-light table-striped mt-6"
         datatable
         [dtOptions]="dtoptions"
       >
-        <thead>
+        <thead class="table-dark">
           <tr>
             <th>Id</th>
             <th>First Name</th>

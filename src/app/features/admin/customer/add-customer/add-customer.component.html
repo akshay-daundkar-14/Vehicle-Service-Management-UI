@@ -7,31 +7,36 @@
 
             <div class="mt-3">
                 <label class="form-label">Customer First Name</label>
-                <input type="text" id="customerFirstName"class="form-control" name="customerFirstName" [(ngModel)]="model.firstName"/>
+                <input type="text" required #firstName="ngModel" id="customerFirstName"class="form-control" name="customerFirstName" [(ngModel)]="model.firstName"/>
+                <small class="text-danger" *ngIf="firstName.invalid && firstName.touched">*First name is required</small>
             </div>
 
             <div class="mt-3">
                 <label class="form-label">Customer Last Name</label>
-                <input type="text" id="customerLastName"class="form-control" name="customerLastName" [(ngModel)]="model.lastName"/>
+                <input type="text" required #lastName="ngModel" id="customerLastName"class="form-control" name="customerLastName" [(ngModel)]="model.lastName"/>
+                <small class="text-danger" *ngIf="lastName.invalid && lastName.touched">*Last name is required</small>
             </div>
 
             <div class="mt-3">
                 <label class="form-label">Customer Email</label>
-                <input type="text" id="customerEmail"class="form-control" name="customerEmail" [(ngModel)]="model.email"/>
+                <input type="text" required #email="ngModel" id="customerEmail"class="form-control" name="customerEmail" [(ngModel)]="model.email"/>
+                <small class="text-danger" *ngIf="email.invalid && email.touched">*Email is required</small>
             </div>
 
             <div class="mt-3">
                 <label class="form-label">Customer Mobile</label>
-                <input type="text" id="customerMobile"class="form-control" name="customerMobile" [(ngModel)]="model.mobile"/>
+                <input type="text" required #mobile="ngModel" id="customerMobile"class="form-control" name="customerMobile" [(ngModel)]="model.mobile"/>
+                <small class="text-danger" *ngIf="mobile.invalid && mobile.touched">*Mobile is required</small>
             </div>
 
             <div class="mt-3">
                 <label class="form-label">Customer Address</label>
-                <input type="text" id="customerAddress"class="form-control" name="customerAddress" [(ngModel)]="model.address"/>
+                <input type="text" required #address="ngModel" id="customerAddress"class="form-control" name="customerAddress" [(ngModel)]="model.address"/>
+                <small class="text-danger" *ngIf="address.invalid && address.touched">*Address is required</small>
             </div>
 
             <div class="mt-3">
-                <button class="btn btn-secondary" type="submit">Save Customer</button>
+                <button [disabled]="form.invalid" class="btn btn-secondary" type="submit">Save Customer</button>
             </div>
         </div>
     </form>

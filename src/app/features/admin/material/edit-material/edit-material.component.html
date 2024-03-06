@@ -9,16 +9,18 @@
     
                 <div class="mt-3">
                     <label class="form-label">Item Name</label>
-                    <input type="text" id="itemName"class="form-control" name="itemName" [(ngModel)]="model.itemName"/>
+                    <input type="text" required #itemName="ngModel" id="itemName"class="form-control" name="itemName" [(ngModel)]="model.itemName"/>
+                    <small class="text-danger" *ngIf="itemName.invalid && itemName.touched">*Item Name is required</small>
                 </div>
     
                 <div class="mt-3">
                     <label class="form-label">Material Cost</label>
-                    <input type="text" id="materialCost"class="form-control" name="materialCost" [(ngModel)]="model.cost"/>
+                    <input type="text"  required #cost="ngModel" id="materialCost"class="form-control" name="materialCost" [(ngModel)]="model.cost"/>
+                    <small class="text-danger" *ngIf="cost.invalid && cost.touched">*Cost is required</small>
                 </div>
     
                 <div class="mt-3">
-                    <button class="btn btn-secondary" type="submit">Edit material</button>
+                    <button [disabled]="form.invalid" class="btn btn-secondary" type="submit">Edit material</button>
                 </div>
             </div>
         </form>
